@@ -31,4 +31,22 @@ public class PointTest {
         double expected = 6.40;
         Assert.assertEquals(rsl, expected, 0.01);
     }
+
+    @Test
+    public void whenThis351That575Then4dot89() {
+        Point firstPoint = new Point(3, 5, 1);
+        Point secondPoint = new Point(5, 7, 5);
+        double rsl = firstPoint.distance3d(secondPoint);
+        double expected = 4.89;
+        Assert.assertEquals(rsl, expected, 0.01);
+    }
+
+    @Test
+    public void whenThis020That1047Then() {
+        Point firstPoint = new Point(0, 2, 0);
+        Point secondPoint = new Point(10, 4, 7);
+        double rsl = firstPoint.distance3d(secondPoint);
+        double expected = 12.36;
+        Assert.assertEquals(rsl, expected, 0.01);
+    }
 }
