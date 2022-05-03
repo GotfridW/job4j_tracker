@@ -14,16 +14,16 @@ public class Library {
         for (Book bk : books) {
             System.out.println(bk.getTitle() + ", " + bk.getPages() + " pages");
         }
-        System.out.println("\nChanging array elements:");
+        System.out.println(System.lineSeparator() + "Changing array elements:");
         Book temp = books[0];
         books[0] = books[3];
         books[3] = temp;
         for (Book bk : books) {
             System.out.println(bk.getTitle() + ", " + bk.getPages() + " pages");
         }
-        System.out.println("\nShowing Clean code:");
+        System.out.println(System.lineSeparator() + "Showing Clean code:");
         for (Book bk : books) {
-            if (bk.getTitle().equals("Clean Code")) {
+            if ("Clean Code".equals(bk.getTitle())) {
                 System.out.println(bk.getTitle() + ", " + bk.getPages() + " pages");
             }
         }
