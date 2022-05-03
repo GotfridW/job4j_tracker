@@ -8,7 +8,8 @@ public class College {
         bill.setFullName("Bill Murray");
         bill.setGroup("JV-31");
         bill.setEntryDate(LocalDate.of(2020, 9, 15));
-        System.out.println("Student info:" + "\nFull name: " + bill.getFullName() + ";\nGroup: "
-                            + bill.getGroup() + ";\nEntry Date: " + bill.getEntryDate() + ".");
+        String ln = System.lineSeparator();
+        System.out.println("Student info:" + ln + "Full name: " + bill.getFullName() + ";" + ln + "Group: "
+                            + bill.getGroup() + ";" + ln + "Entry Date: " + bill.getEntryDate() + ".");
     }
 }
