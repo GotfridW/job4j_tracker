@@ -56,10 +56,12 @@ public class Tracker {
     public boolean replace(int id, Item item) {
         boolean rsl = false;
         int index = indexOf(id);
-        item.setId(items[index].getId());
-        items[index] = item;
-        if (item.equals(items[index])) {
-            rsl = true;
+        if (index != -1) {
+            item.setId(items[index].getId());
+            items[index] = item;
+            if (item.equals(items[index])) {
+                rsl = true;
+            }
         }
         return rsl;
     }
