@@ -16,7 +16,17 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
-                System.out.println("Added application: " + item);
+                System.out.println("Added item: " + item);
+            } else if (select == 1) {
+                System.out.println("=== Show all items ===");
+                Item[] items = tracker.findAll();
+                if (items.length > 0) {
+                    for (Item item : items) {
+                        System.out.println(item);
+                    }
+                } else {
+                    System.out.println("No items found in storage");
+                }
             } else if (select == 6) {
                 System.out.println("User selected: " + select);
             }
