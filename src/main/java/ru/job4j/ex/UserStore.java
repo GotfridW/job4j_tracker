@@ -8,16 +8,20 @@ public class UserStore {
             if (login.equals(find.getUsername())) {
                 user = find;
                 break;
-            } else {
-                throw new UserNotFoundException("User not found");
             }
+        }
+        if (user == null) {
+            throw new UserNotFoundException("User not found");
         }
         return user;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (!(user.isValid()) || user.getUsername().length() < 3) {
+        if (!(user.isValid())) {
             throw new UserInvalidException("Invalid user");
+        } else if (user.getUsername().length() < 3) {
+            throw new UserInvalidException(
+                    "Username must be at least 3 characters long!");
         }
         return true;
     }
@@ -31,8 +35,10 @@ public class UserStore {
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
-        } catch (UserNotFoundException inv) {
+        } catch (UserInvalidException inv) {
             inv.printStackTrace();
+        } catch (UserNotFoundException nf) {
+            nf.printStackTrace();
         }
     }
 }
