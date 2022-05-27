@@ -18,7 +18,7 @@ public class StartUITest {
         Input in = new StubInput(new ArrayList<>(
                 List.of("0", "Item name", "1")));
         Tracker tracker = new Tracker();
-        ArrayList<UserAction> actions = new ArrayList<>(
+        List<UserAction> actions = new ArrayList<>(
                 List.of(new Create(output), new Exit()));
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
@@ -32,7 +32,7 @@ public class StartUITest {
         String replacedName = "New item name";
         Input in = new StubInput(new ArrayList<>(
                 List.of("0", String.valueOf(item.getId()), replacedName, "1")));
-        ArrayList<UserAction> actions = new ArrayList<>(List.of(
+        List<UserAction> actions = new ArrayList<>(List.of(
                 new Edit(output),
                 new Exit()
         ));
@@ -48,7 +48,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new ArrayList<>(List.of("0", String.valueOf(item.getId()), "1"))
         );
-        ArrayList<UserAction> actions = new ArrayList<>(List.of(
+        List<UserAction> actions = new ArrayList<>(List.of(
                 new Delete(output),
                 new Exit()
         ));
@@ -64,7 +64,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new ArrayList<>(List.of("0", "1")
         ));
-        ArrayList<UserAction> actions =
+        List<UserAction> actions =
                 new ArrayList<>(List.of(
                         new ShowAll(out),
                         new Exit()
@@ -91,7 +91,7 @@ public class StartUITest {
                 new ArrayList<>(List.of(
                    "0", String.valueOf(item.getId()), "1")
         ));
-        ArrayList<UserAction> actions = new ArrayList<>(
+        List<UserAction> actions = new ArrayList<>(
                 List.of(
                 new FindById(out),
                 new Exit()
@@ -117,7 +117,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new ArrayList<>(List.of("0", item.getName(), "1")
         ));
-        ArrayList<UserAction> actions = new ArrayList<>(List.of(
+        List<UserAction> actions = new ArrayList<>(List.of(
                 new FindByName(out), new Exit()
         ));
         new StartUI(out).init(in, tracker, actions);
@@ -140,7 +140,7 @@ public class StartUITest {
                 new ArrayList<>(asList("2", "0")
         ));
         Tracker tracker = new Tracker();
-        ArrayList<UserAction> actions = new ArrayList<>(List.of(
+        List<UserAction> actions = new ArrayList<>(List.of(
                 new Exit()
         ));
         new StartUI(out).init(in, tracker, actions);
