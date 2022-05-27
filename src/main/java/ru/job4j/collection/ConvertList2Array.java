@@ -8,11 +8,11 @@ public class ConvertList2Array {
         int[][] array = new int[groups][cells];
         int row = 0, cell = 0;
         for (Integer num : list) {
-            if (row < array.length && cell < array[row].length) {
-                array[row][cell++] = num;
-            } else {
+            array[row][cell] = num;
+            cell++;
+            if (cell == cells) {
                 cell = 0;
-                array[++row][cell++] = num;
+                row++;
             }
         }
         return array;
