@@ -30,6 +30,7 @@ public class BankService {
         for (User user : users.keySet()) {
             if (passport.equals(user.getPassport())) {
                 rsl = user;
+                break;
             }
         }
         return rsl;
@@ -42,6 +43,7 @@ public class BankService {
             for (Account account : users.get(user)) {
                 if (requisite.equals(account.getRequisite())) {
                     rsl = account;
+                    break;
                 }
             }
         }
