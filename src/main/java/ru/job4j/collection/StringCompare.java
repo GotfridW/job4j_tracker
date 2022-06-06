@@ -6,8 +6,7 @@ public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int rsl = 0;
-        int shortest = Math.min(left.length(), right.length());
-        for (int i = 0; i < shortest; i++) {
+        for (int i = 0; i < Math.min(left.length(), right.length()); i++) {
             int cmpByChar = Character.compare(left.charAt(i), right.charAt(i));
             if (cmpByChar != 0) {
                 rsl = cmpByChar;
