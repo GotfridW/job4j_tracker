@@ -66,14 +66,15 @@ public class BankService {
      * @return банковский счёт клиента
      */
     public Account findByRequisite(String passport, String requisite) {
-        return users.keySet()
-                .stream()
-                .filter(user -> passport.equals(user.getPassport()))
-                .map(users::get)
-                .flatMap(Collection::stream)
-                .filter(acc -> requisite.equals(acc.getRequisite()))
-                .findFirst()
-                .orElse(null);
+        User user = findByPassport(passport);
+        if (user != null) {
+            return users.get(user)
+                    .stream()
+                    .filter(acc -> requisite.equals(acc.getRequisite()))
+                    .findFirst()
+                    .orElse(null);
+        }
+        return null;
     }
 
     /**
