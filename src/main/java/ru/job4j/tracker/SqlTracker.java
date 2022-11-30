@@ -97,11 +97,7 @@ public class SqlTracker implements Store {
                 "select * from items")) {
             try (ResultSet set = ps.executeQuery()) {
                 while (set.next()) {
-                    result.add(new Item(
-                            set.getInt(1),
-                            set.getString(2),
-                            set.getTimestamp(3).toLocalDateTime()
-                    ));
+                    result.add(getItem(set));
                 }
             }
         } catch (SQLException e) {
@@ -117,11 +113,7 @@ public class SqlTracker implements Store {
             ps.setString(1, key);
             try (ResultSet set = ps.executeQuery()) {
                 while (set.next()) {
-                    result.add(new Item(
-                            set.getInt(1),
-                            set.getString(2),
-                            set.getTimestamp(3).toLocalDateTime()
-                    ));
+                    result.add(getItem(set));
                 }
             }
         } catch (SQLException e) {
@@ -132,19 +124,25 @@ public class SqlTracker implements Store {
 
     @Override
     public Item findById(int id) {
-        Item item = new Item();
+        Item item = null;
         try (PreparedStatement ps = conn.prepareStatement("select * from items where id = ?")) {
             ps.setInt(1, id);
             try (ResultSet set = ps.executeQuery()) {
-                while (set.next()) {
-                    item.setId(set.getInt(1));
-                    item.setName(set.getString(2));
-                    item.setCreated(set.getTimestamp(3).toLocalDateTime());
+                if (set.next()) {
+                    item = getItem(set);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return item;
+    }
+
+    private Item getItem(ResultSet set) throws SQLException {
+        Item item = new Item();
+        item.setId(set.getInt("id"));
+        item.setName(set.getString("name"));
+        item.setCreated(set.getTimestamp("created").toLocalDateTime());
         return item;
     }
 }
