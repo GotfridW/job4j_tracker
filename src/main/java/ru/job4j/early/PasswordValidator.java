@@ -8,19 +8,34 @@ public class PasswordValidator {
         if (password.length() < 8 || password.length() > 32) {
             throw new IllegalArgumentException("Password should be length [8, 32]");
         }
-        if (!containsUpperCase(password)) {
+        boolean upperCount = false, lowerCount = false, digitCount = false, specialCount = false;
+        for (char c : password.toCharArray()) {
+            if (!upperCount && Character.isUpperCase(c)) {
+                upperCount = true;
+            }
+            if (!lowerCount && Character.isLowerCase(c)) {
+                lowerCount = true;
+            }
+            if (!digitCount && Character.isDigit(c)) {
+                digitCount = true;
+            }
+            if (!specialCount && !Character.isLetterOrDigit(c)) {
+                specialCount = true;
+            }
+        }
+        if (!upperCount) {
             throw new IllegalArgumentException(
                     "Password should contain at least one uppercase letter");
         }
-        if (!containsLowerCase(password)) {
+        if (!lowerCount) {
             throw new IllegalArgumentException(
                     "Password should contain at least one lowercase letter");
         }
-        if (!containsDigit(password)) {
+        if (!digitCount) {
             throw new IllegalArgumentException(
                     "Password should contain at least one figure");
         }
-        if (!containsSpecialCharacter(password)) {
+        if (!specialCount) {
             throw new IllegalArgumentException(
                     "Password should contain at least one special symbol"
             );
@@ -35,49 +50,5 @@ public class PasswordValidator {
             }
         }
         return password;
-    }
-
-    private static boolean containsUpperCase(String str) {
-        boolean rsl = false;
-        for (char c : str.toCharArray()) {
-            if (Character.isUpperCase(c)) {
-                rsl = true;
-                break;
-            }
-        }
-        return rsl;
-    }
-
-    private static boolean containsLowerCase(String str) {
-        boolean rsl = false;
-        for (char c : str.toCharArray()) {
-            if (Character.isLowerCase(c)) {
-                rsl = true;
-                break;
-            }
-        }
-        return rsl;
-    }
-
-    private static boolean containsDigit(String str) {
-        boolean rsl = false;
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                rsl = true;
-                break;
-            }
-        }
-        return rsl;
-    }
-
-    private static boolean containsSpecialCharacter(String str) {
-        boolean rsl = false;
-        for (char c : str.toCharArray()) {
-            if (!Character.isLetterOrDigit(c)) {
-                rsl = true;
-                break;
-            }
-        }
-        return rsl;
     }
 }
