@@ -8,34 +8,37 @@ public class PasswordValidator {
         if (password.length() < 8 || password.length() > 32) {
             throw new IllegalArgumentException("Password should be length [8, 32]");
         }
-        boolean upperCount = false, lowerCount = false, digitCount = false, specialCount = false;
+        boolean upperCase = false, lowerCase = false, digit = false, specialChar = false;
         for (char c : password.toCharArray()) {
-            if (!upperCount && Character.isUpperCase(c)) {
-                upperCount = true;
+            if (!upperCase && Character.isUpperCase(c)) {
+                upperCase = true;
             }
-            if (!lowerCount && Character.isLowerCase(c)) {
-                lowerCount = true;
+            if (!lowerCase && Character.isLowerCase(c)) {
+                lowerCase = true;
             }
-            if (!digitCount && Character.isDigit(c)) {
-                digitCount = true;
+            if (!digit && Character.isDigit(c)) {
+                digit = true;
             }
-            if (!specialCount && !Character.isLetterOrDigit(c)) {
-                specialCount = true;
+            if (!specialChar && !Character.isLetterOrDigit(c)) {
+                specialChar = true;
+            }
+            if (upperCase && lowerCase && digit && specialChar) {
+                break;
             }
         }
-        if (!upperCount) {
+        if (!upperCase) {
             throw new IllegalArgumentException(
                     "Password should contain at least one uppercase letter");
         }
-        if (!lowerCount) {
+        if (!lowerCase) {
             throw new IllegalArgumentException(
                     "Password should contain at least one lowercase letter");
         }
-        if (!digitCount) {
+        if (!digit) {
             throw new IllegalArgumentException(
                     "Password should contain at least one figure");
         }
-        if (!specialCount) {
+        if (!specialChar) {
             throw new IllegalArgumentException(
                     "Password should contain at least one special symbol"
             );
