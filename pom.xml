@@ -19,7 +19,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <liquibase.config>db/liquibase_test.properties</liquibase.config>
+                <liquibase.config>src/main/resources/db/liquibase_test.properties</liquibase.config>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -28,7 +28,7 @@
         <profile>
             <id>production</id>
             <properties>
-                <liquibase.config>db/liquibase.properties</liquibase.config>
+                <liquibase.config>src/main/resources/db/liquibase.properties</liquibase.config>
             </properties>
         </profile>
     </profiles>
@@ -64,9 +64,14 @@
             <version>42.5.1</version>
         </dependency>
         <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.17.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.1.214</version>
+            <version>2.2.220</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -108,7 +113,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.8</version>
+                <version>0.8.10</version>
                 <executions>
                     <execution>
                         <goals>
