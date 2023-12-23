@@ -33,13 +33,11 @@ public class AnalyzeByMap {
         List<Label> result = new ArrayList<>();
         Map<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
-            for (Subject sub : pupil.subjects()) {
-                map.merge(sub.getName(), sub.getScore(), Integer::sum);
-            }
+            pupil.subjects().forEach(subject ->
+                map.merge(subject.getName(), subject.getScore(), Integer::sum));
         }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                result.add(new Label(entry.getKey(), (double) entry.getValue() / pupils.size()));
-            }
+        map.forEach((k, v) ->
+                result.add(new Label(k, (double) v / pupils.size())));
         return result;
     }
 
@@ -61,13 +59,10 @@ public class AnalyzeByMap {
         List<Label> result = new ArrayList<>();
         Map<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
-            for (Subject sub : pupil.subjects()) {
-                map.merge(sub.getName(), sub.getScore(), Integer::sum);
-            }
+            pupil.subjects().forEach(subject ->
+                 map.merge(subject.getName(), subject.getScore(), Integer::sum));
         }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                result.add(new Label(entry.getKey(), entry.getValue()));
-        }
+        map.forEach((k, v) -> result.add(new Label(k, v)));
         result.sort(Comparator.naturalOrder());
         return result.get(result.size() - 1);
     }
